@@ -1,0 +1,3 @@
+D:\JetBrains\Toolbox\apps\CLion\ch-0\202.8194.17\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\MyLink.dir/objects.a
+C:\mingw64\bin\ar.exe cr CMakeFiles\MyLink.dir/objects.a @CMakeFiles\MyLink.dir\objects1.rsp
+C:\mingw64\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\MyLink.dir/objects.a -Wl,--no-whole-archive  -o MyLink.exe -Wl,--out-implib,libMyLink.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\MyLink.dir\linklibs.rsp
