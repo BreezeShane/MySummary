@@ -57,5 +57,14 @@ git config --global http.proxy 'socks5://127.0.0.1:1080'
 git config --global https.proxy 'socks5://127.0.0.1:1080'
 ```
 
+**Manjaro 每次上传总是需要输入用户名和密码的解决方案**
+
+目前看到的解决方案是进入到项目目录里添加本地凭证即可。执行：
+
+```
+git config --global credential.helper store
+git pull
+```
+
 ***
 后面再遇到问题的时候我还会继续更新~
