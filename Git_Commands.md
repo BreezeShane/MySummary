@@ -63,8 +63,12 @@ git config --global https.proxy 'socks5://127.0.0.1:1080'
 
 ```
 git config --global credential.helper store
+# 这个指令会在用户路径下生成.gitconfig文件并指添加相应的配置内容。
+# 用户路径是指windows: C:/Users/username、mac os x: /Users/username和linux: /home/username
 git pull
 ```
+
+然后你只需要再输入一次用户名和密码就可以生效了！
 
 ***
 后面再遇到问题的时候我还会继续更新~

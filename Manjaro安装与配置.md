@@ -104,7 +104,9 @@ yay -S ttf-wps-fonts
 
 经常错过5秒然后无奈进入自己并不想进的系统又只能重启吗？不妨让它再稍微等等！
 
-Konsole下输入`sudo vim /etc/default/grub`,再修改TIMEOUT那一行的数据既可了，想改多久改多久！、
+Konsole下输入`sudo vim /etc/default/grub`,再修改TIMEOUT那一行的数据既可了，想改多久改多久！
+
+别忘了最后还需要执行这个：`sudo update-grub`
 
 #### 添加程序到开始菜单
 
@@ -636,3 +638,19 @@ tf.test.is_gpu_available()
 ```
 
 以上，cuda和cudnn的安装就到此结束了！
+
+### Zsh找不到Anaconda的问题
+
+这样的情况一般应该是没用Anaconda初始化过Zsh，应该执行一下
+
+```shell
+～/anaconda3/bin/conda init zsh
+```
+
+然后你再编辑一下～/.zshrc并添加入anaconda的环境变量即可。
+
+```shell
+export PATH="/home/<USER_NAME>/anaconda3/bin:$PATH"
+```
+
+「注」：其实这个解决方法可以通用到fish、powershell、tcsh、xonsh等等。
