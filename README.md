@@ -1,6 +1,6 @@
 # MySummary
-The repository contains all that I have learnt about Clang. Well, I finally will add C++, Java, R, Goland,maybe even Matlab in it one day!
-Along the path, I'm still a green. So if there are things let you think I'm "intelligent", please dismiss me as you like, I will learn from you!
+The repository contains all that I have learnt about Clang. Well, I finally will add C++, Java, R, Golang,maybe even Matlab in it one day!
+Along the way, I'm still a green. So if there are things let you think I'm "intelligent", please diss me as you like, I will learn from you!
 ---
 **Contents**
 
