@@ -40,46 +40,121 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 
 ### **2.Manjaro中期配置**
 
-#### 输入法安装
+#### Fcitx5输入法安装
 
-我们开始安装输入法了，依次输入：
+> 吐槽一下，Fcitx4是真的很智障，用了这么久，它始终没能适应我的输入习惯，更别说什么词库、emoji等等的东西了，用了几个月终于也是选择了卸载。
+
+要知道Fcitx4和Fcitx5存在文件冲突，两者不可得兼。所以我们首先要删除Fcitx4，执行：
 
 ```shell
-sudo pacman -S fcitx-googlepinyin
-sudo pacman -S fcitx-im
-sudo pacman -S fcitx-configtool
+sudo pacman -Rs $(pacman -Qsq fcitx)
+或者
+sudo pacman -Rsc fcitx
 ```
 
-然后我们需要编辑配置文件，输入`sudo vim ~/.xprofile`
-写入以下的代码：
+不用担心会出现什么问题，顶多就是你现在输入不了中文，我们还会再装回去的，现在我们可以安装Fcitx5了：
 
 ```
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
+yay -S fcitx5 fcitx5-chinese-addons manjaro-asian-input-support-fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool fcitx5-material-color
 ```
 
-重启一下电脑就可以开始使用中文输入法了！
+> \- fcitx5: 输入法基础框架主程序
+>
+> \- fcitx5-configtool：输入法配置程序
+>
+> \- fcitx5-qt: QT5程序的支持库
+>
+> \- fcitx5-gtk: GTK程序的支持库
+>
+> \- fcitx5-chinese-addons: 简体中文输入的支持，云拼音
+>
+> \- fcitx5-material-color：一款使用 Material Design 配色的 fcitx5 皮肤。这是[GitHub仓库地址](https://github.com/hosxy/Fcitx5-Material-Color)，针对主题这里的讲解比较详细，可以参照他的方法配置，尤其当你喜欢单行模式的话。
+>
+> \- manjaro-asian-input-support-fcitx5 能让manjaro自动配置环境变量
+
+对应的 git 版本为：
+
+```
+yay -S fcitx5-git fcitx5-chinese-addons-git manjaro-asian-input-support-fcitx5 fcitx5-gtk-git fcitx5-qt5-git fcitx5-configtool-git
+```
+
+可以添加词库：
+
+```
+yay -S fcitx5-pinyin-moegirl fcitx5-pinyin-zhwiki
+```
+
+然后重启一下就可以使用了，如果无法启动输入法，在系统设置 --> 区域设置 --> 输入法 --> 添加输入法中手动添加“拼音”。
+
+---
+
+如果发现这时候还不行，那么我们需要配置一下环境变量了：
+
+```shell
+sudo vim ~/.pam_environment
+# 将以下这些内容粘贴即可
+GTK_IM_MODULE DEFAULT=fcitx
+QT_IM_MODULE  DEFAULT=fcitx
+XMODIFIERS    DEFAULT=@im=fcitx
+# 保存并退出后继续执行
+sudo vim ~/.xprofile
+# 接着需要将下面这一行代码粘贴才行
+fcitx5 &
+# 注意：如果你是WPS用户并且即使做了以上操作重启之后还是不能在WPS使用fcitx5的话，需要在~/.xprofile这里继续添加
+export QT_IM_MODULE=fcitx5
+```
+
+然后保存并退出，重启一下就可以正常使用了！
+
+首次如果看不到输入法图标的话，需要运行一下fcitx5。
+
+> 有一说一，Fcitx5可真香！！！
+
+如果希望有日语输入法，需要安装这些：
+
+```shell
+yay -S fcitx5-skk fcitx5-mozc
+```
 
 #### 音乐平台安装
 
 作为一个狂热的音乐爱好者，听音乐的事怎么能少了呢？
-`sudo pacman -S netease-cloud-music`
+
+下面这些播放器各位需要按自己实际情况而安装
+
+```shell
+sudo pacman -S netease-cloud-music
+# 常规版本
+yay -S netease-cloud-music-imflacfix
+# 这个版本比上面的功能更多
+yay -S electron-netease-cloud-music
+# 这个版本是简易版，功能比较有限，不支持滚动歌词
+yay -S netease-cloud-music-gtk netease-cloud-music-gtk-bin
+# 这个是和Linux平台下基于Rust+GTK开发的网易云音乐播放器，没用过，不好评判
+```
+
+#### Tim安装
+
+```shell
+yay -S com.qq.tim.spark
+```
+
+> 用了Manjaro这么久，我才遇到能正常使用的Tim。。。
 
 #### Markdown编辑器安装
 
 如果你经常使用markdown来写文档的话，安装这个！
 
-`sudo pacman -S typora`
+```shell
+sudo pacman -S typora
+```
 
 #### 办公软件安装
 
 Linux下可没有Windows的Office一件套，不过还好我们有WPS！
 
 ```shell
-yay -S wps-office
-yay -S wps-office-mui-zh-cn
-yay -S ttf-wps-fonts
+yay -S wps-office wps-office-mui-zh-cn ttf-wps-fonts
 ```
 
 #### **科学上网安装与配置**
@@ -104,15 +179,22 @@ yay -S ttf-wps-fonts
 
 经常错过5秒然后无奈进入自己并不想进的系统又只能重启吗？不妨让它再稍微等等！
 
-Konsole下输入`sudo vim /etc/default/grub`,再修改TIMEOUT那一行的数据既可了，想改多久改多久！
-
-别忘了最后还需要执行这个：`sudo update-grub`
+```shell
+sudo vim /etc/default/grub
+# 再修改TIMEOUT那一行的数据既可了，想改多久改多久！
+sudo update-grub
+```
 
 #### 添加程序到开始菜单
 
 你有想添加到开始菜单的程序却不知怎么办吗？
 
-在Konsole输入`sudo vim /usr/share/applications/<app_name>.desktop`（其中<app_name>是你要指定的应用程序）创建这个配置文件。
+在Konsole输入
+
+```shell
+sudo vim /usr/share/applications/<app_name>.desktop
+# 其中<app_name>是你要指定的应用程序
+```
 
 然后把下面这个模板输入进去，再填一下空就可以了！
 
@@ -144,13 +226,26 @@ Terminal=false
 StartupWMClass=vs-code
 ```
 
-#### PyCharm安装
+#### PyCharm & Anaconda安装
 
-Python Developer必备的神器！输入‘yay -S pycharm-professional'即可安装IDE PyCharm
+Python Developer必备的神器！输入下列代码即可安装IDE PyCharm
 
-光有PyCharm还不行，我们还需要有Python解释器，我选择Anaconda！不过不要以为yay能找到正确的anaconda，其实它下载来的anaconda是windows平台下才能用的，我们只能去[官网](https://www.anaconda.com/products/individual)下载。选Linux版本！选Linux版本！选Linux版本！
+```shell
+yay -S pycharm-professional
+```
 
-下载后把脚本文件放在你想放的位置（我有点懒，就直接放在/home/brezeshane/下了），然后进入Konsole输入`bash Anaconda3-2020.11-Linux-x86_64.sh`（后面的脚本文件名以下载的为准！）接着一路enter就行。
+光有PyCharm还不行，我们还需要有Python解释器，我选择Anaconda！不过不要以为yay能找到正确的anaconda，其实它下载来的anaconda是windows平台下才能用的，我们只能去[官网](https://www.anaconda.com/products/individual)下载。
+
+选Linux版本！选Linux版本！选Linux版本！
+
+下载后把脚本文件放在你想放的位置（我有点懒，就直接放在/home/brezeshane/下了），然后进入Konsole输入下行代码即可
+
+```shell
+bash Anaconda3-2020.11-Linux-x86_64.sh
+# 后面的脚本文件名以下载的为准！
+```
+
+接着一路enter就行。
 
 ```
 Do you wish the installer to initialize Anaconda3
@@ -159,11 +254,19 @@ by running conda init? [yes|no]
 
 如果看到这段话，推荐输入yes。
 
-然后进入最后一步，在Konsole输入`vim ~/.bashrc`，在文本末尾添加`export PATH="/home/<USER_NAME>/anaconda3/bin:$PATH"`（其中<USER_NAME>是你的Linux系统用户名），再保存退出。别忘了在Konsole这里输入`source ~/.bashrc`
+然后进入最后一步
 
-一切大功告成，不信，试试输入`conda list`
+```shell
+sudo vim ~/.bashrc
+# 在文本末尾添加
+export PATH="/home/<USER_NAME>/anaconda3/bin:$PATH"
+# 其中<USER_NAME>是你的Linux系统用户名，完成后保存退出。
+source ~/.bashrc
+# 我们来测试一下Anaconda是否正常安装
+conda list
+```
 
-顺便提一下，如果输入`python`会看到这个
+这时如果输入`python`会看到这个
 
 ```
 Python 3.8.5 (default, Sep  4 2020, 07:30:14) 
@@ -172,17 +275,35 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-因为Manjaro系统是不自带Python环境的！
-
 #### Clion安装
 
-由于JetBrains的个性，C语言IDE的运行环境也要有JDK支持，且版本不低于11。。。
+由于JetBrains的个性，C语言IDE的运行环境也要有JDK支持，且版本不低于11。。。执行下行代码即可安装Clion以及一些必备的依赖。
 
-在Konsole端输入`sudo pacman -S clion clion-cmake make clion-lldb clion-jre`即可安装Clion以及一些必备的依赖。
+```shell
+sudo pacman -S clion clion-cmake make clion-lldb clion-jre
+```
+
+#### R & RStudio安装
+
+执行下行代码即可安装R语言环境：
+
+```shell
+sudo pacman -S base-devel
+# 安装依赖需要
+yay -S r r-devel rstudio-desktop-bin
+```
+
+#### IntelliJ Idea安装
+
+执行下行代码即可安装：
+
+```shell
+sudo pacman -S intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre
+```
 
 ### Windows 10 / Manjaro下的Anaconda配置
 
-依次输入下列语句，无特殊说明外，一个字——等！
+依次输入下列语句：
 
 ```shell
 conda update --all
@@ -191,7 +312,7 @@ conda create --name ANYNAMEYOULIKE python=3.8
 
 接着你面临二选一的抉择：
 
-法一：
+**法一：**
 
 ```shell
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo
@@ -203,7 +324,7 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 ```
 
-法二：
+**法二：**
 
 打开`~/.condarc`文件，修改为以下内容
 
@@ -380,39 +501,50 @@ chmod +x install.sh && bash install.sh
 bash /opt/xdman/uninstall.sh
 ```
 
-权限不够的话请在首处加`sudo`，如果还不行，那就先`sudo su`再尝试
+权限不够的话请在首处加`sudo`，或者先执行`sudo su`再尝试上行指令。
 
 运行XDM后要在如下菜单里做好配置
 
 ```
-[Tools]–[Languages]											//设定语言
-[Tools]–[Network optimization]–[High speed]–[OK]			//选择高速模式
-[Tools]–[Options]–[Browser monitoring]–[View settings]		//选择安装浏览器监视插件
-[Tools]–[Options]											//可调整下载路径、线程数和代理设置
+[Tools]–[Languages] //设定语言
+[Tools]–[Network optimization]–[High speed]–[OK] //选择高速模式
+[Tools]–[Options]–[Browser monitoring]–[View settings] //选择安装浏览器监视插件
+[Tools]–[Options] //可调整下载路径、线程数和代理设置
 ```
 
 ### 解决Windows 10和Manjaro存在时间差的问题
 
-一般修改Manjaro的时间设置，输入指令`sudo timedatectl set-local-rtc true`即可。
+一般修改Manjaro的时间设置是最省事的，输入指令：
+
+```shell
+sudo timedatectl set-local-rtc true
+```
 
 ### Manjaro sudo 免密问题
 
-首先修改/etc/sudoers，并清除`%sudo ALL=(ALL) ALL`前的“#”，然后进入root模式再修改`/etc/sudoers.d/10-installer`，在其中的`%wheel ALL=(ALL) ALL`下面添加
+首先修改，并清除`%sudo ALL=(ALL) ALL`前的“#”，然后进入root模式再修改`/etc/sudoers.d/10-installer`，在其中的``下面添加
 
 ```shell
+sudo vim /etc/sudoers
+# 找到%sudo ALL=(ALL) ALL这一行并去掉前面的‘#’。
+sudo vim /etc/sudoers.d/10-installer
+# 找到%wheel ALL=(ALL) ALL这一行并在下面添加下列内容：
 USERNAME ALL=(ALL) NOPASSWD: ALL
 %USERNAME ALL=(ALL) NOPASSWD: ALL
 ```
 
 ### JupyterLab安装指北
 
-你可以使用pip安装：`pip install jupyterlab`
+执行下列各指令即可：
 
-你也可以使用conda安装：`conda install -c conda-forge jupyterlab`
+```shell
+pip install jupyterlab
+# 可以采用下行指令安装，二选一。
+conda install -c conda-forge jupyterlab
+sudo pacman -S nodejs npm
+```
 
-接着为了JupyterLab的完整性，我们安装一下Node.js和npm，`sudo pacman -S nodejs npm`
-
-装好以后，就可以直接运行了：`jupyter lab`
+结束后即可执行`jupyter lab`运行。
 
 ### Manjaro-JupyterLab配置
 
@@ -654,3 +786,40 @@ export PATH="/home/<USER_NAME>/anaconda3/bin:$PATH"
 ```
 
 「注」：其实这个解决方法可以通用到fish、powershell、tcsh、xonsh等等。
+
+### pacman 和 yay 添加多线程下载
+
+执行下面的命令下载 axel
+
+```
+ yay -S axel
+```
+
+编辑 `/etc/pacman.conf` 文件：
+
+```
+XferCommand = /usr/bin/axel -n 10 -o %o %u
+```
+
+编辑 `/etc/makepkg.conf` 文件：
+
+```
+DLAGENTS=('file::/usr/bin/curl -gqC - -o %o %u'
+      'ftp::/usr/bin/axel -n 10 -o %o %u'
+      'http::/usr/bin/axel -n 10 -o %o %u'
+      'https::/usr/bin/axel -n 10 -o %o %u'
+      'rsync::/usr/bin/rsync --no-motd -z %u %o'
+      'scp::/usr/bin/scp -C %u %o')
+```
+
+其实上面两步做的改动就是将原来的curl换成了axel。
+
+「注」：如果发现yay有些软件安装不了，请改回这个配置文件再继续！
+
+### Yakuake后台连接学校VPN（可能没什么用。。。）
+
+如题，按下F12打开Yakuake并执行这个代码：
+
+```
+sudo openconnect --protocol=nc --user (学号) https://学校的VPN地址
+```
