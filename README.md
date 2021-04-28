@@ -14,6 +14,6 @@ Along the way, I'm still a green. So if there are things let you think I'm "inte
 
 5.[我的教训](https://github.com/BreezeShane/MySummary/blob/master/%E6%88%91%E7%9A%84%E6%95%99%E8%AE%AD.md)
 
-7.[Markdown语法杂记](https://github.com/BreezeShane/MySummary/blob/master/Markdown%E8%AF%AD%E6%B3%95%E6%9D%82%E8%AE%B0.md)
+6.[Markdown语法杂记](https://github.com/BreezeShane/MySummary/blob/master/Markdown%E8%AF%AD%E6%B3%95%E6%9D%82%E8%AE%B0.md)
 
-8.[LaTeX](https://github.com/BreezeShane/MySummary/blob/master/LaTeX.md)
+7.[LaTeX](https://github.com/BreezeShane/MySummary/blob/master/LaTeX.md)
