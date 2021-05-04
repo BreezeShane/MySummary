@@ -1,4 +1,4 @@
-# Git Commands
+# **Git Commands**
 ***
 
 **2020/11/08**
@@ -7,7 +7,7 @@
 
 于是我就写这个帮助文档，一来我能日后有需要再去复习，二来也可以给小伙伴们提供参考~
 
-**Git 前期准备该怎么做？**
+## Git 前期准备该怎么做？
 
 首先，第一次使用git的时候，操作稍稍麻烦一些，但做完之后，就是一劳永逸的事啦！
 
@@ -33,7 +33,7 @@
 16. 当然上面的master也可以换成别的分支。另外应该知道，这里的(Your repository's name)是你在本地命名的仓库名，与GitHub上的仓库名没有必然联系。
 17. 最后，你会发现上传成功，那么你赶快去刷新你的GitHub吧！
 
-**Git repository名字忘记了怎么办？**
+## Git repository名字忘记了怎么办？
 
 你很有可能建立了多个仓库，仓库名太多容易记不过来，有时候又容易忘记，该怎么办啊？别急，山人自有妙计：
 
@@ -46,18 +46,28 @@
 可以输入`git rm --cached (filename)`
 如果不行，试试这个`git rm -f --cached (filename)`
 
-**Git 上传文件被拒绝该怎么办？**
+Git 上传文件被拒绝该怎么办？
 
-输入`git pull --rebase (Your repository's name) master`然后再push一下就好啦！
+## 输入`git pull --rebase (Your repository's name) master`然后再push一下就好啦！
 
-**Git 需要走代理怎么办？**
+## Git 需要走代理怎么办？
 
+```shell
+# git config --global http.proxy http://127.0.0.1:1080
+# git config --global https.proxy https://127.0.0.1:1080
+# 如果你像上面那样设置过代理的话需要执行这两行指令：
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+# 1086 改为自己的 socks5 监听端口
+git config --global http.https://github.com.proxy socks5://127.0.0.1:1086
+git config --global https.https://github.com.proxy socks5://127.0.0.1:1086
+# 1080 改为自己的 http 监听端口
+git config --global http.https://github.com.proxy https://127.0.0.1:1080
+git config --global https.https://github.com.proxy https://127.0.0.1:1080
 ```
-git config --global http.proxy 'socks5://127.0.0.1:1080' 
-git config --global https.proxy 'socks5://127.0.0.1:1080'
-```
 
-**Manjaro 每次上传总是需要输入用户名和密码的解决方案**
+## Manjaro 每次上传总是需要输入用户名和密码的解决方案
 
 目前看到的解决方案是进入到项目目录里添加本地凭证即可。执行：
 

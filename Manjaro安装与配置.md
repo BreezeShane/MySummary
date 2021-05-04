@@ -1,12 +1,10 @@
 # Manjaro Linux
 
-## 2021/1/20
-
 终于考完试了！在大学第一个寒假到来之际，我决定入坑Linux系统，并花了很长时间挑选系统（深度选择困难患者），终于，我选择了Manjaro Linux，希望它~不会让人失望~！
 
-### **1.Windows10+Manjaro Linux深度指北**
+## **1.Windows10+Manjaro Linux深度指北**
 
-#### 前期安装
+### 前期安装
 
 「温馨提示」如果打算是用grub的话请提前先准备好一个额外的分区用于存放Manjaro系统，另外必须要准备的是一个能用的USB！！！
 首先，在Manjaro官网上选择一个系统版本下载，一定要谨慎选择！一定要谨慎选择！一定要谨慎选择！选择很重要！选择很重要！选择很重要！
@@ -16,7 +14,7 @@
 进入USB的系统后再双击Install Manjaro即可进行安装。
 安装好以后就可以进入Manjaro系统了。
 
-#### 初期准备
+### 初期准备
 
 使用初期我们需要先配置一下，按Alt+Space，输入Konsole启动终端，再输入`sudo pacman-mirrors -i -c China -m rank`更新镜像排名。
 接着输入`sudo pacman -Syy`和`sudo pacman -Syu`。
@@ -38,9 +36,9 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 
 `sudo pacman -S binutils base-devel`
 
-### **2.Manjaro中期配置**
+## **2.Manjaro中期配置**
 
-#### Fcitx5输入法安装
+### Fcitx5输入法安装
 
 > 吐槽一下，Fcitx4是真的很智障，用了这么久，它始终没能适应我的输入习惯，更别说什么词库、emoji等等的东西了，用了几个月终于也是选择了卸载。
 
@@ -116,7 +114,7 @@ export QT_IM_MODULE=fcitx5
 yay -S fcitx5-skk fcitx5-mozc
 ```
 
-#### 音乐平台安装
+### 音乐平台安装
 
 作为一个狂热的音乐爱好者，听音乐的事怎么能少了呢？
 
@@ -133,7 +131,7 @@ yay -S netease-cloud-music-gtk netease-cloud-music-gtk-bin
 # 这个是和Linux平台下基于Rust+GTK开发的网易云音乐播放器，没用过，不好评判
 ```
 
-#### Tim安装
+### Tim安装
 
 ```shell
 yay -S com.qq.tim.spark
@@ -141,7 +139,7 @@ yay -S com.qq.tim.spark
 
 > 用了Manjaro这么久，我才遇到能正常使用的Tim。。。
 
-#### Markdown编辑器安装
+### Markdown编辑器安装
 
 如果你经常使用markdown来写文档的话，安装这个！
 
@@ -149,7 +147,7 @@ yay -S com.qq.tim.spark
 sudo pacman -S typora
 ```
 
-#### 办公软件安装
+### 办公软件安装
 
 Linux下可没有Windows的Office一件套，不过还好我们有WPS！
 
@@ -157,7 +155,7 @@ Linux下可没有Windows的Office一件套，不过还好我们有WPS！
 yay -S wps-office wps-office-mui-zh-cn ttf-wps-fonts
 ```
 
-#### **科学上网安装与配置**
+### 科学上网安装与配置
 
 想要科学上网，就用[金坷垃](jinkela.red)！
 
@@ -165,9 +163,9 @@ yay -S wps-office wps-office-mui-zh-cn ttf-wps-fonts
 
 先打开qv2ray并点新建，然后复制节点链接粘贴到qv2ray里就可以了！(什么？你没氪金？那打扰了！)
 
-### **3.Manjaro深度使用**
+## **3.Manjaro深度使用**
 
-#### VS Code安装
+### VS Code安装
 
 安装VS Code的话，首先要到官网[VS Code官网](https://code.visualstudio.com/docs?dv=linux64)进行下载
 
@@ -175,7 +173,7 @@ yay -S wps-office wps-office-mui-zh-cn ttf-wps-fonts
 
 解压好以后就可以运行code文件开始写bug了！！！
 
-#### 切换系统的等待时间更改
+### 切换系统的等待时间更改
 
 经常错过5秒然后无奈进入自己并不想进的系统又只能重启吗？不妨让它再稍微等等！
 
@@ -185,7 +183,7 @@ sudo vim /etc/default/grub
 sudo update-grub
 ```
 
-#### 添加程序到开始菜单
+### 添加程序到开始菜单
 
 你有想添加到开始菜单的程序却不知怎么办吗？
 
@@ -226,7 +224,7 @@ Terminal=false
 StartupWMClass=vs-code
 ```
 
-#### PyCharm & Anaconda安装
+### PyCharm & Anaconda安装
 
 Python Developer必备的神器！输入下列代码即可安装IDE PyCharm
 
@@ -275,7 +273,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-#### Clion安装
+### Clion安装
 
 由于JetBrains的个性，C语言IDE的运行环境也要有JDK支持，且版本不低于11。。。执行下行代码即可安装Clion以及一些必备的依赖。
 
@@ -283,7 +281,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 sudo pacman -S clion clion-cmake make clion-lldb clion-jre
 ```
 
-#### R & RStudio安装
+### R & RStudio安装
 
 执行下行代码即可安装R语言环境：
 
@@ -293,7 +291,7 @@ sudo pacman -S base-devel
 yay -S r r-devel rstudio-desktop-bin
 ```
 
-#### IntelliJ Idea安装
+### IntelliJ Idea安装
 
 执行下行代码即可安装：
 
@@ -477,7 +475,7 @@ UUID=你查到的UUID	/home/用户名/ANYNAMEYOULIKE ntfs defaults 0 0
 
 另外可以输入`df -h`来查看挂载情况。
 
-#### **XDM安装**
+### **XDM安装**
 
 XDM的[下载链接](https://subhra74.github.io/xdm/)
 
@@ -874,135 +872,58 @@ flameshot gui
 
 于是地球人再也阻拦不了我截图了！！！（悄悄地说，其实这个你想拿去干啥都行:wink::joy::laughing:）
 
-## 从Zerotier One安装与配置到Android & Manjaro连接共享控制的一条龙服务问题
+### Docker安装与配置
 
-### Zerotier One安装与配置
-
-ZerotierOne是一种内网穿透工具，它的基本原理是通过搭建虚拟内网来连接各设备。为什么会提到连接共享控制的问题？此类的连接共享以及控制，多都是在内网上实现的，这样说你多少该懂了。。。
-
->  「注」：网上与此相关的资料太少了，我觉得很有必要详细记录下来，因此本文看起来繁琐了一些。
-
-首先在[Zerotier-One官网](https://www.zerotier.com/)上注册一个帐号，我选择了使用GitHub登陆。登陆之后会出现这个界面：
-
-![2021-04-28_19-13](Asserts/2021-04-28_19-13.png)
-
-点击创建网络按钮，即可自动生成新的一栏，这时候你需要点击进去即可
-
-![2021-04-28_19-21](Asserts/2021-04-28_19-21.png)
-
-**IPv4 Auto-Assign**那一栏选什么地址不用我说，随君喜好！Zerotier One就是可以自己定IP地址！
-
-**IPv6 Auto-Assign**那一栏选中第二项即可。
-
-往下翻页你会看到这个：
-
-![2021-04-28_22-49](Asserts/2021-04-28_22-49.png)
-
-这里提示可以添加网络成员，但是需要相应设备安装对应的客户端。
-
-![2021-04-28_22-52](Asserts/2021-04-28_22-52.png)
-
-由于我只使用Android和Manjaro，因此其它平台请参考其它资料。
-
-我见网上很多博客写的这个指令：`curl -s https://install.zerotier.com | sudo bash`，但至少在Manjaro里是不能正常执行的，会提示如下的报错信息——找不到与系统版本匹配的客户端。
-
-![](Asserts/2021-04-28_22-58.png)
-
-于是我执行了`yay -S zerotier-one`来安装。根据`sudo zerotier-one -h`的返回结果可知，需要接着输入如下指令：
+> [Docker官方网址（含文档）](https://docs.docker.com/)
 
 ```shell
-sudo zerotier-one -pdiq
-# 如果等了半天没有反应，就终止一下吧。。。我当初就这样做的，实质上执行
-# 这个只是为了生成相应的配置文件来解决先前执行下一个指令报的错误——找不到配置文件。
-sudo zerotier-cli status
-# 返回200 info *** 1.6.4 ONLINE则正常。
-sudo zerotier-listpeers
-# 用于获取当前的连接情况，不执行也可
-sudo zerotier-cli join ******
-# 这里的******就是前面特意强调的虚拟内网ID
-sudo zerotier-listpeers
-# 确认一下确实成功了，你会看到比原先多出来一行内容，而且最后一个单词是LEAF，其它
-# 行最后的单词都是PLANET。
-sudo systemctl start zerotier-one.service
-# 启用zerotier-one服务
-sudo systemctl enable zerotier-one.service
-# 开机自启动zerotier-one服务
-######
-sudo zerotier-cli set 12ac4a1e7101bb86 allowManaged=1
-# 注意，关于这条指令网上有两种声音，有主张授权为1的，但没见到谁有给理由，而主张授
-# 权为0的理由如下：
-# 这样就不会导致勾选Authorized后，zerotier自动将路由下发到ubuntu，如果
-# zerotier设置的路由为10.0.1.0/24,会导致本来10.0.1.0/24 dev br-lan
-# 变成10.0.1.0/24 dev ztxxxxxxxxx,然后你就不能连接路由器了
-# 作者：fc790 https://www.bilibili.com/read/cv7586063/ 出处： bilibili
-## 这种就看着弄，出了问题再改回来就好了。
-sudo systemctl restart zerotier-one
-# 如果你做了刚才那个做法，需要重启一下服务。
+sudo pacman -Syu
+sudo pacman -S docker
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo docker version
+sudo usermod -aG docker $USER
+reboot # 这里需要重启一下
+sudo vim /etc/docker/daemon.json
+# 进入编辑状态，输入一下配置信息：
 ```
 
-到此为止，电脑上的ZeroTier One就已经配置得差不多了，我们需要在Android设备上安装客户端了。
-
-如果你有Google Play并且你还能使用，你可以直接在Google商店上下载。但不幸的是，如果你没有，你可以选择去安装，而更不幸的是，你使用的是华为产品，那恭喜恭喜，您跟我一样，没什么可能走这条路了（毕竟国际形势如此紧张。。。也没办法。。。）
-
-走的另一条路在此-->[ApkPure](https://apkpure.com/)，在这家网站上你可以下载到许许多多好用实用的外国软件，干净、安全、可靠，我是被吸引着主动下载了他们的客户端，真香了。。。
-
-装好Zerotier One之后，需要新建一个连接配置，点击ADD NETWORK，然后输入虚拟内网ID，完成后点击下方的Add Network，并开启连接，这时候你需要回到电脑上的Zerotier Central，翻到Members这一栏刷新一下，你会发现多出来一个成员，这里需要你点前面的复选框来授权连接（你也可以选择删除或者断开连接并忽略）。然后就可以自己给设备设定名字以及备注了。
-
-![](Asserts/2021-04-29_00-25.png)
-
-然而如果你希望这台设备能被内网的其它设备发现，需要先后点击这两处：
-
-![](Asserts/2021-04-29_00-28.png)
-
-大致上如此，这时候你已经搭建好这个虚拟内网了！
-
-如果希望某设备（已知Node ID，在客户端下方一栏出现）也能加入这个虚拟内网，需要在Zerotier Central找到![](Asserts/2021-04-28_21-21.png)这里并输入对应设备的Node ID。
-
-另外特意说一下如果希望本机也加入的话，获取Node ID这个问题折磨我好久，最后查到官方文档给的：
-
-![](Asserts/2021-04-29_00-37.png)
-
-我才到终端输入`cat /var/lib/zerotier-one/identity.public`，来查看节点信息的（写这篇报告之前是这样做的）然而当我写到刚刚那个安装指令的时候，我才发现，有个最简单的方法：
+```javascript
+{
+    "registry-mirrors": [
+        "https://registry.docker-cn.com",
+        "https://dockerhub.azk8s.cn",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://reg-mirror.qiniu.com",
+        "https://hub-mirror.c.163.com",
+        "https://mirror.ccs.tencentyun.com"
+    ]
+}
+```
 
 ```shell
-sudo zerotier-cli status
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 ```
 
-返回的200 info后面那个就是本机Node ID。。。谁叫我当时不知道呢。。。
+### Ark打开Zip压缩包出现中文乱码的解决方案
 
-> 不过不算白费努力，咱该明白遇到问题相对要好的解决办法其实是去翻一翻官方文档，尤其是当你发现相关资料特别少的时候。这会让你节省不少力气和时间。
-
-### Android & Manjaro连接共享控制
-
-#### VNC远程控制
-
-安装好虚拟内网了，我们要开始Android & Manjaro连接共享控制了，经过我长时间的搜索与实践，最终选择的还是VNC Viewer。安装网址：[VNC Server](https://www.realvnc.com/en/connect/download/vnc/)	[VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/)
-
-注意两个我是都选了Generic script x64版本，如果你非常清楚应该如何做的话请自行选择。
-
-下载来的这两个压缩包可以解压到指定文件夹，然后从终端这里分别cd到这两个目录。
-
-首先说VNC Server：到这个目录下之后执行
+执行如下指令即可：
 
 ```shell
-sudo ./vncinstall
-sudo vnclicense -add 3TH6P-DV5AE-BLHY6-PNENS-B3AQA
-vncserver :1
-ps -ef | grep vnc # 查看进程，如果能正常显示vnc进程的话即是安装成功。
+yay -S p7zip-natspec
+# 中间会提示你是否要删除P7zip，选择是。
 ```
 
-接下来再说VNC Viewer：
+然后打开Ark，点击菜单栏中的设置，单击配置Ark，然后取消勾选Libzip，并且要选中P7zip，保存设置并重启Ark即可。
+
+## 偶尔看到的一些骚操作
+
+看见有人针对JB全家桶收费问题提出了一个方案：采用无限期试用
 
 ```shell
-sudo ./vncinstall
-cd /usr/bin
-./vncviewer
+sudo rm -rf ~/.PhpStorm2019.3/config/eval
+sudo rm -rf ~/.WebStorm2019.3/config/eval
+# 此处以phpstorm为例
 ```
 
-这时候弹出窗口，按照要求安装即可正常使用。
-
-***不过得先有账号。。。***注册并登录账号之后就可以添加网络配置了，填入的IP地址应该是你要连接的设备所在的Zerotier One这里的IP地址（不是物理IP地址）。输入主机的用户名和密码，保存后就可以正常连接主机咯。
-
-#### Syncthing文件共享
-
-手机和电脑下载安装好Syncthing之后其实基本也没什么了，就是需要互通一下ID信息，就可以设定分享站点之类的了，不过应该注意的是，断开网络就不能正常使用Syncthing了。相对来说其实是很简单的文件共享软件，可以实时更新共享文件的内容以及管理版本，你大致可以理解为数据托管中心一样的东西吧。
