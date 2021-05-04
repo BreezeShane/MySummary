@@ -1,7 +1,6 @@
-# MySummary
-The repository contains all that I have learnt about Clang. Well, I finally will add C++, Java, R, Golang,maybe even Matlab in it one day!
-Along the way, I'm still a green. So if there are things let you think I'm "intelligent", please diss me as you like, I will learn from you!
----
+# My Summary
+The repository contains all that I have learnt about Clang. Well, I finally will add C++, Java, R, Golang,maybe even Matlab in it one day!Along the way, I'm still a green. So if there are things let you think I'm "intelligent", please diss me as you like !
+
 **Contents**
 
 1.[Manjaro安装与配置](https://github.com/BreezeShane/MySummary/blob/master/Manjaro%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md)
